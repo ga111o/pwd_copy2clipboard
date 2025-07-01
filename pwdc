@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+if ! (grep -qi microsoft /proc/version 2>/dev/null || \
+      uname -r | grep -qi wsl 2>/dev/null || \
+      [ -f /proc/sys/fs/binfmt_misc/WSLInterop ] || \
+      [ -n "$WSL_DISTRO_NAME" ]); then
+    echo "pwdc is designed for WSL." >&2
+    exit 1
+fi
+
+if ! command -v clip.exe >/dev/null 2>&1; then
+    echo "clip.exe not found." >&2
+    exit 1
+fi
+
+current_dir=$(pwd)
+
+echo -n "$current_dir" | clip.exe
+
+echo "$current_dir"
