@@ -1,7 +1,7 @@
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 
-SCRIPT = src/pwdc
+SCRIPT = pwdc
 TARGET = $(BINDIR)/pwdc
 
 install:
